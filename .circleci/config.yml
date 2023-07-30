@@ -20,7 +20,8 @@ jobs:
            apt update && apt install maven openjdk-11-jdk -y
            mvn clean package -DskipTests=true
            mvn test
-
+      - store_artifacts:
+          path: /tmp/artifacts
 
 
 # Orchestrate jobs using workflows
