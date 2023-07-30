@@ -17,7 +17,7 @@ jobs:
       - run:
          name: "Updating Repo"
          command: |
-           apt update && apt install maven openjdk-11-jdk
+           apt update && apt install maven openjdk-11-jdk -y
            mvn clean package -DskipTests=true
            mvn test
 
