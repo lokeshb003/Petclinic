@@ -5,7 +5,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  apt-update:
+  build:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/configuration-reference/#executor-job
     docker:
@@ -16,25 +16,10 @@ jobs:
       - checkout
       - run:
          name: "Updating Repo"
-         command: "apt update && apt install maven -y"
-  build:
-    docker:
-      - image: ubuntu:latest
-    steps:
-      - checkout
-      - run:
-          name: "Build Maven app"
-          command: "mvn clean package -DskipTests=true"
-  test:
-    docker:
-      - image: ubuntu:latest
-    steps:
-      - checkout
-      - run:
-          name: "test the maven app"
-          command: "mvn test"
-
-
+         command: |
+           apt update && apt install maven openjdk-11-jdk
+           mvn clean package -DskipTests=true
+           mvn test
 
 
 
@@ -43,10 +28,4 @@ jobs:
 workflows:
   full-workflow:
     jobs:
-      - apt-update
-      - build:
-          requires:
-            - apt-update
-      - test:
-          requires:
-            - build
+      - build
