@@ -21,8 +21,7 @@ jobs:
            mvn clean package -DskipTests=true
            mvn test
       - store_artifacts:
-          path: ./target/*.war
-          destination: artifact-file 
+          path: ./target/*.war 
 
 
 # Orchestrate jobs using workflows
