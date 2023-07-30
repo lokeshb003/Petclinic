@@ -22,7 +22,7 @@ jobs:
            mvn test
       - store_artifacts:
           path: ./target/*.war
-          destination: /tmp 
+          destination: artifact-file 
 
 
 # Orchestrate jobs using workflows
