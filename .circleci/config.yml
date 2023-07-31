@@ -17,7 +17,7 @@ jobs:
       - run:
          name: "Packaging and testing using maven build tool"
          command: |
-           apt update && apt install maven openjdk-11-jdk -y
+           apt update && apt install maven openjdk-11-jdk curl -y
            mvn clean package -DskipTests=true
            mvn test
       - run:
