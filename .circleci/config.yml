@@ -15,11 +15,21 @@ jobs:
     steps:
       - checkout
       - run:
-         name: "Updating Repo"
+         name: "Packaging and testing using maven build tool"
          command: |
            apt update && apt install maven openjdk-11-jdk -y
            mvn clean package -DskipTests=true
            mvn test
+           mvn clean verify sonar:sonar -Dsonar.projectKey=Springboot-app-Petclinic -Dsonar.projectName='Springboot-app-Petclinic' -Dsonar.host.url=http://49.50.93.22:9000 -Dsonar.token=sqp_930a733fb8f235e1f49404814ad53e57a17c3277
+      - run:
+          name: "Install Jfrog CLI"
+          command: curl -fL https://getcli.jfrog.io | sh
+      - run:
+          name: "Configure Jfrog Artifactory"
+          command: ./jfrog config add springboot-app-libs-snapshot --artifactory-url https://lokeshbalaji003.jfrog.io/artifactory/springboot-app-libs-snapshot --user lokeshbalaji003 --apikey cmVmdGtuOjAxOjE3MjIzMzM0NjM6NUJZUzd1TWJramRRaUZFUVJuaVlESERKcEVp --interactive=false
+      - run:
+          name: "Push to Jfrog Artifactory"
+          command: ./jfrog rt u "target/*.war springboot-app-libs-snapshot --build-name=build-new --build-number=$CIRCLE_BUILD_NUM --flat=false"
       - store_artifacts:
           path: ./target
 
