@@ -587,13 +587,6 @@
             <name>Spring Milestone Repository</name>
             <url>https://repo.spring.io/milestone</url>
         </repository>
-        <distributionManagement>
-            <snapshotRepository>
-                <id>snapshots</id>
-                <name>a0k90pdbo2ftw-artifactory-primary-0-snapshots</name>
-                <url>https://lokeshbalaji003.jfrog.io/artifactory/springboot-app-libs-snapshot</url>
-            </snapshotRepository>
-        </distributionManagement>
     </repositories>
 <!--THIS REPO IS MODIFIED BY DEVOPS SHACK https://www.youtube.com/@devopsshack -->
 </project>
