@@ -20,7 +20,6 @@ jobs:
            apt update && apt install maven openjdk-11-jdk -y
            mvn clean package -DskipTests=true
            mvn test
-           mvn clean verify sonar:sonar -Dsonar.projectKey=Springboot-app-Petclinic -Dsonar.projectName='Springboot-app-Petclinic' -Dsonar.host.url=http://49.50.93.22:9000 -Dsonar.token=sqp_930a733fb8f235e1f49404814ad53e57a17c3277
       - run:
           name: "Install Jfrog CLI"
           command: curl -fL https://getcli.jfrog.io | sh
